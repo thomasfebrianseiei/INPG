@@ -1,0 +1,42 @@
+header{
+    background-color: #ffa500;
+    height: 200px;
+    font-size: 20px;
+}
+div {
+  background: url('celestial-being-black.jpg');
+  background-image: url('celestial-being-black.jpg');
+ }
+ 
+ h1 {
+  color: blue;
+  font-size: 2em;
+  padding-top: 20px;
+  width: 100%;
+  background-color: black;
+}
+
+h3 {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.699);
+  color: red;
+  font-weight: 90;
+  font-size: 24px;
+  line-height: 24px;
+  padding-bottom: 25px;
+  text-align: left;
+  width: 100%;
+}
+
+p {
+  color: green;
+  font-size: 16px;
+  line-height: 30px;
+  margin-top: 40px;
+  padding: 10px 20px;
+  font-family: Calibri;
+}
+
+footer{
+padding-top: 4px;
+background-color: #ffa500
+}
