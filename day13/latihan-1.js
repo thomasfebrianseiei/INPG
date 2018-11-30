@@ -12,38 +12,35 @@ function reverseText (password) {
 }
 
 function updateVowels (password) {
-      var string = "";
-      var chart = "";
-   for(i=0; i < password.length; i++){  
-        if (password[i] == 'i') {
-            chart = 'j';
-            string = string + chart;
+    var vocal = [
+        ['a', 'b'],
+        ['e', 'f'],
+        ['i', 'j'],
+        ['o', 'p'],
+        ['u', 'v'],
+        ['A', 'B'],
+        ['E', 'F'],
+        ['I', 'J'],
+        ['O', 'P'],
+        ['U', 'V'],
+      ];
+      var alpabet = '';
+      var Find = false;
+      for (var i = 0; i < password.length; i++) {
+        for (var x = 0; x < vocal.length; x++) {
+          if (password[i] === vocal[x][0]) {
+            alpabet += vocal[x][1];
+            Find = true;
+          }
         }
-         if (password[i] == 'a') {
-            chart = 'b';
-            string = string + chart;
+        if (Find !== true) {
+          alpabet += password[i];
         }
-         if (password[i] == 'u') {
-            chart = 'v';
-            string = string + chart;
-        }
-        if (password[i] == 'e') {
-            chart = 'f';
-            string = string + chart;
-        }
-         if (password[i] == 'o') {
-             chart = 'p';
-            string = string + chart;
-        }
-         else {
-            chart = password[i];
-            string = string + chart;
-        }
+        Find = false;
+      }
+      return alpabet;
     }
-    return string
-}
-     
-
+   
 var noSpaces = removeSpaces(password);
 var reversed = reverseText(noSpaces);
 var encryptedPassword = updateVowels(reversed);
