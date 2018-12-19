@@ -1,0 +1,89 @@
+html {
+  min-height: 100vh;
+  zoom: 109%;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(90deg, #e9ac04, #26a65b, #050f69, cyan);
+  background-size: 500% 500%;
+  -webkit-animation: radial-gradient 10s ease infinite;
+  -moz-animation: radial-gradient 10s ease infinite;
+  animation: radial-gradient 10s ease infinite; grid-column-end:
+}
+@-webkit-keyframes radial-gradient {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@-moz-keyframes radial-gradient {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@keyframes radial-gradient {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+.menu h1 {
+  color:RED;
+  font-family: Orbitron, sans-serif;
+  font-weight: normal;
+  text-align: center;
+  font-size: 3em;
+  margin: 20px;
+  margin-bottom: 50px;
+  -webkit-animation: fade-in 0.27s linear infinite alternate;
+  -moz-animation: fade-in 0.27s linear infinite alternate;
+  animation: fade-in 0.27s linear infinite alternate;
+}
+@-moz-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  65% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  65% {
+    opacity: 1;
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  65% {
+    opacity: 1;
+  }
+}
+
+.image-box {
+  width: 100%;
+  height: 85%;
+  margin: auto;
+  text-align: center;
+}
+
+.image-box img {
+  max-height: 42%;
+  margin: 0px 7px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: 0.5s;
+  box-shadow: 1.5px 1.5px 1.5px rgba(6, 0, 27, 0.3);
+}
+
+.image-box img:hover {
+  opacity: 1;
+}
+
+.image-box img:active {
+  transform: scale(0.97);
+  transition: transform .2s;
+}

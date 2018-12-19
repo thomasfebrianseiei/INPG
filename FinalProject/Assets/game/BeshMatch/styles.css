@@ -1,0 +1,239 @@
+html {
+  min-height: 100vh;
+  font-family : "Comic Sans MS", cursive;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(90deg, #e9ac04, #26a65b, #050f69, cyan);
+  background-size: 500% 500%;
+  -webkit-animation: radial-gradient 10s ease infinite;
+  -moz-animation: radial-gradient 10s ease infinite;
+  animation: radial-gradient 10s ease infinite; grid-column-end:
+}
+@-webkit-keyframes radial-gradient {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@-moz-keyframes radial-gradient {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@keyframes radial-gradient {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+.page-title {
+  color:RED;
+  font-family: "Comic Sans MS", cursive;
+  font-weight: normal;
+  text-align: center;
+  font-size: 4em;
+  -webkit-animation: fade-in 0.27s linear infinite alternate;
+  -moz-animation: fade-in 0.27s linear infinite alternate;
+  animation: fade-in 0.27s linear infinite alternate;
+}
+@-moz-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  65% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  65% {
+    opacity: 1;
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  65% {
+    opacity: 1;
+  }
+}
+
+.game-info-container {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+}
+
+.game-info {
+  color: rgba(3, 0, 15, 0.849);
+  font-size: 4em;
+}
+
+.game-container {
+  margin: 50px auto;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  grid-gap: 10px;
+  justify-content: center;
+  perspective: 500px;
+}
+
+.card {
+  position: relative;
+  cursor: url("Assets/Cursors/Hand.cur"), auto;
+  height: 175px;
+  width: 125px;
+}
+
+.card-face {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  border-width: 1px;
+  border-style: solid;
+  overflow: hidden;
+  transition: transform 500ms ease-in-out;
+  backface-visibility: hidden;
+}
+
+.card.visible .card-back {
+  transform: rotateY(-180deg); 
+}
+
+.card.visible .card-front {
+  transform: rotateY(0); 
+}
+
+.card.matched .card-front .card-value {
+  animation: dance 1s linear infinite 500ms;
+}
+
+.card-back {
+  background-color: black;
+  border-color: rgb(4, 0, 255);
+  transform: rotateY(0); 
+}
+
+.cob-web {
+  position: absolute;
+  transition: width 100ms ease-in-out, height 100ms ease-in-out;
+  width: 47px;
+  height: 47px;
+}
+
+.card-face:hover .cob-web {
+  width: 52px;
+  height: 52px;
+}
+
+.cob-web-top-left {
+  top: 0;
+  left: 0;
+}
+
+.cob-web-top-right {
+  top: 0;
+  right: 0;
+}
+
+.cob-web-bottom-left {
+  bottom: 0;
+  left: 0;
+}
+
+.cob-web-bottom-right {
+  bottom: 0;
+  right: 0;
+}
+
+.avengers {
+  align-self: flex-start;
+  transition: transform 100ms ease-in-out;
+  transform: translateY(-5px);
+}
+
+.card-back:hover .avengers {
+  transform: translateY(0);
+}
+
+.card-value {
+  position: relative;
+  transition: transform 100ms ease-in-out;
+  transform: scale(.9);
+}
+
+.card-front:hover .card-value {
+  transform: scale(1);
+}
+
+.card-front {
+  background-color: rgba(63, 14, 238, 0.123);
+  border-color: black;
+  transform: rotateY(180deg);
+}
+
+.overlay-text {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  display: none;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: rgb(0, 4, 255);
+  font-family:"Comic Sans MS", cursive;
+  transition: background-color 50000ms, font-size 2000ms;
+}
+
+.overlay-text-small {
+  font-size: .3em;
+}
+
+.overlay-text.visible {
+  display: flex;
+  animation: overlay-grow 500ms forwards;
+}
+
+@keyframes dance {
+  0%, 100% {
+    transform: rotate(0)
+  }
+  25% {
+    transform: rotate(-10deg)
+  }
+  75% {
+    transform: rotate(10deg)
+  }
+}
+
+@keyframes overlay-grow {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 0;
+  }
+  to {
+    background-color: rgba(0, 0, 0, .8);
+    font-size: 10em;
+  }
+}
+
+@media (max-width: 600px) {
+  .game-container {
+    grid-template-columns: repeat(2, auto)
+  }
+
+  .game-info-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}

@@ -1,0 +1,150 @@
+<!DOCTYPE HTML>
+<head>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="style.css" rel="stylesheet" type="text/css">
+		<title>Master mind</title>
+		<script src="checkGuess.js"></script> 
+		<script>
+			var value1;
+			var value2;
+			var value3;
+			var value4;
+
+			var currentRound=1;
+			var fieldDisable=2; //disable fields that are not in use
+			var guessAmount=10; //How many rounds you have to guess
+			
+			//current determinant
+			var determinant=sessionStorage.getItem("determinant");
+			//display help
+			var needHelp=sessionStorage.getItem("help");
+		</script>
+	</head>
+	<body id = "mainBody" >
+	<header>
+			<h1>Master Mind</h1>
+			<div id="result"></div>
+		</header>
+		<div id="container">
+		<section id="main">
+			<table>
+				<tr>
+					<th></th>
+					<th id="answer1">?</th>
+					<th id="answer2">?</th>
+					<th id="answer3">?</th>
+					<th id="answer4">?</th>
+				</tr>
+				<script>
+				var main = document.getElementById("mainBody");
+				var createPickSound = document.createElement("audio");
+   				createPickSound.setAttribute("autoplay", "true");
+    			createPickSound.setAttribute("loop", "true");
+				main.appendChild(createPickSound);
+	
+				setTimeout(function() {
+      			createPickSound.setAttribute("src", "sound/Camille_Saint_Saens_Aquarium.mp3");
+				}, 2000);
+				</script>
+				<script>
+					var g=10;
+					var n=1;
+					for(var i=0;i<guessAmount;i++){
+						document.write("<tr id='round"+g+"'><td><b>"+g+".</b></td>");
+						for(var j=0;j<4;j++){
+							document.write("<td>\n<select id='g"+g+"n"+n+"'>\n");
+							for(var k=1;k<9;k++)
+							{
+								document.write("<option value="+k+">"+k+"</option>\n");
+							}
+							document.write("</select></td>\n");
+							n++;
+						}
+						n=1;
+						g--;
+						document.write("</tr>");
+					}
+				</script>
+			</table>
+		</section>
+		<div id="AboutGame"></div>
+		<script>
+			determinant=sessionStorage.getItem("determinant");
+			if("start"=== determinant){
+			document.write("<section id='hints'>");
+			document.write("<h1>Hints</h1>");
+				for(var l=10;l>0;l--)
+				{
+					if(l<10)
+					{
+						document.write("<b id='h"+l+"'>0"+l+".</b><br>");
+					}
+					else
+					{
+						document.write("<b id='h"+l+"'>"+l+".</b><br>");
+					}
+				}
+				document.write("<br>");
+			document.write("</section>");
+			}
+		</script>
+		</div>
+		<div id="buttons">
+		<input id="resetButton" type="button" name="NewGame" value="Reset" onclick="location.reload(true);"/>
+		<input id="startButton" type="button" name="start" value="Start" onclick="changeDeterminantStart();"/>
+		<input id="answerButton" type="button" name="answer" value="Answer" onclick="checkGuess();" />
+		<input id="helpButton" type="button" name="help" value="Help" onclick="checkHelp();" />
+		</div>
+		<script>
+						
+			//highlighting the first round
+			document.getElementById("round1").style.backgroundColor="green";
+			
+			if("no"=== needHelp)
+			{
+				document.getElementById("AboutGame").innerHTML="";
+				document.getElementById('helpButton').style.border="solid";
+			}
+			
+			value1=Math.floor((Math.random()*8)+1);
+			value2=Math.floor((Math.random()*8)+1);
+			value3=Math.floor((Math.random()*8)+1);
+			value4=Math.floor((Math.random()*8)+1);
+
+			while(fieldDisable<11){
+				document.getElementById("g"+fieldDisable+"n1").disabled=true;
+				document.getElementById("g"+fieldDisable+"n2").disabled=true;
+				document.getElementById("g"+fieldDisable+"n3").disabled=true;
+				document.getElementById("g"+fieldDisable+"n4").disabled=true;
+				
+				fieldDisable++;
+			}
+			
+			function changeDeterminantStart(){
+					Determinant=sessionStorage.getItem("determinant");
+					sessionStorage.setItem("determinant", "start");
+					location.reload(true);
+			}
+			
+			function checkHelp(){
+				needHelp=sessionStorage.getItem("help");
+				if("no"=== needHelp)
+				{
+					document.getElementById("AboutGame").innerHTML="<section id='help'>\n<h1>About Game</h1>\n<p>The objective of the game is to correctly guess the set of four hidden numbers. </p>\n<p>You proceed from the bottom up. The set may occasionally contain same numbers: 2-4-2-8 for example.</p>\n<p>You get hints Green: Correct number & correct position then Blue: Correct number.</p>\n</section>";
+					sessionStorage.setItem("help", "yes");
+					document.getElementById('helpButton').style.border="solid";
+				}
+				else
+				{
+					document.getElementById("AboutGame").innerHTML="";
+					sessionStorage.setItem("help", "no");
+					document.getElementById('helpButton').style="";
+				}
+			}
+		</script>
+		
+	</body>
+</html>
